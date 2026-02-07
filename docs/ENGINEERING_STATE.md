@@ -1,78 +1,49 @@
-# Bio AI — Engineering State
+# Engineering State — Bion
 
-## Current Phase
-- Phase: Phase 2 — MVP Technical + Minimal UI
-- Status: ✅ Working end-to-end (UI → API → LLM → JSON → UI)
+## Status
+- MVP: ✅ completed
+- Core analysis pipeline: ✅ stable
+- History, analytics, persistence (Supabase): ✅ working
+- Text-based analysis: ✅ production-ready
+- Retrieval: ✅ implemented (single-document scope, no multi-source comparison yet)
+- PDF ingestion: 🚧 in progress
+  - Known issue: unreliable text extraction on Windows
+  - Current focus: stabilizing extraction without breaking existing pipeline
 
----
+## Frontend
+- Framework: Next.js (App Router)
+- Bundler: Webpack
+- Styling: incremental UI system (no global refactor)
+- Sidebar:
+  - Continuous (no vertical divider)
+  - Narrower width (ChatGPT-like)
+  - Persistent DNA circular logo (blue/green)
+- Central Home:
+  - Brand-focused empty state
+  - “Bion” as primary visual identity
 
-## What’s Implemented (DONE)
+## Backend
+- API routes stable (`/api/analyze_*`)
+- LLM integration:
+  - Cost-efficient models only
+  - No “latest” aliases
+  - Explicit model IDs
+- Guardrails:
+  - No medical advice
+  - Explanatory / interpretative only
 
-### Runtime
-- Next.js App Router project (NO `src/` folder)
-- Dev server runs (`npm run dev`)
-- Webpack mode in dev (not Turbopack)
+## Branding / Assets
+- Sidebar logo:
+  - Circular DNA (blue + green)
+  - Inline SVG
+  - Optional subtle micro-animation (respect prefers-reduced-motion)
+- Central logo:
+  - “Bion” wordmark
+  - Smaller, refined
+  - Faux-3D via SVG strokes (no heavy gradients)
+  - Optional abstract serpent wrapping (symbolic, non-cartoonish)
 
-### API
-- Endpoint: `POST /api/analyze`
-- File: `app/api/analyze/route.ts`
-- Multi-provider routing (OpenAI / Anthropic)
-- Intelligent router (input length, structure, domain, mode)
-- Fallback + circuit breaker
-- Strict JSON parsing + normalization
-- Guardrails per mode
-
-### Additional API
-- Endpoint: `POST /api/analyze_pdf`
-- Node runtime (`export const runtime = "nodejs"`)
-- PDF upload via multipart/form-data
-- Text extraction pipeline (currently under stabilization)
-
-### UI
-- Single-page chat UI: `app/page.tsx`
-- Modes selector (Snapshot → Academic → Deep Dive, order locked)
-- History sidebar (ChatGPT-like)
-- Component extraction + UX polish (collapsible sections, copy buttons, loading state)
-- Length / token limits enforced
-
-### Persistence
-- Supabase connected (server-side, service role)
-- Tables:
-  - `analyses`
-  - `analysis_events`
-- Analyses persisted with:
-  - input_text
-  - output_json
-  - mode
-  - provider_used
-  - fallback_used
-  - latency_ms
-  - violations_count
-
-### Metrics & Analytics
-- `analysis_created` event logged after successful insert
-- Infrastructure ready for:
-  - views
-  - copy
-  - toggle events
-
----
-
-## Current Behavior (LOCKED)
-- Modes order: Snapshot → Academic → Deep Dive
-- Every output includes `paper_type_note`
-- `limits` = scientific limitations / open challenges (NEVER AI limits)
-- Quantitative rules:
-  - Snapshot: NO numbers anywhere
-  - Academic & Deep Dive:
-    - NO numbers in `summary`
-    - Numbers allowed ONLY in `why_it_matters` and `key_concepts`
-- Deep Dive target: PhD / researchers / clinicians
-- Academic target: early-year / master students
-
----
-
-## Known Environment Notes (Windows)
-- PowerShell `curl` is alias → use `curl.exe`
-- Desktop path under OneDrive
-- Next dev running with Webpack (`next dev --webpack`)
+## Constraints
+- NO breaking changes
+- NO refactor of existing logic
+- UI and branding changes must be incremental
