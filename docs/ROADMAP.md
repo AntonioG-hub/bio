@@ -1,37 +1,40 @@
-# Bio AI — Roadmap
+# Roadmap — Bion
 
-## FASE 0 — Foundations (DONE)
-- Target and scope defined
-- Output schema locked
+## Phase 1 — MVP (DONE)
+- Text-based biomedical analysis
+- Snapshot / Academic / Deep Dive modes
+- Structured outputs
+- History & persistence
+- Clean, minimal UI
 
-## FASE 1 — Core Output Quality (DONE)
-- Modes and audiences
-- Quantitative rules locked
-- `paper_type_note` mandatory
-- `limits` meaning locked
+## Phase 2 — UX & Identity (IN PROGRESS)
+- Sidebar redesign (continuous, narrower)
+- Brand identity finalized:
+  - Name: Bion
+  - DNA circular logo (sidebar)
+  - Refined “Bion” wordmark (center)
+- Magnetic empty state
+- Chat behavior upgrade (assistant-like, layered answers)
 
-## FASE 2 — MVP Technical (DONE)
-- `/api/analyze` working
-- UI working
-- History + persistence
-- Multi-provider routing
-- Analytics infrastructure
+## Phase 2.5 — PDF Ingestion (IN PROGRESS)
+- Fix Windows PDF text extraction
+- Improve robustness without touching core pipeline
+- Keep PDF analysis optional, not blocking
 
-## FASE 2.5 — PDF Ingestion (IN PROGRESS)
-- Upload PDF
-- Extract text
-- Feed same analysis pipeline
-- Keep output schema locked
+## Phase 3 — Conversational Depth
+- Stronger follow-up behavior
+- Better handling of “why / what do you think” questions
+- Clear distinction between:
+  - From document
+  - General knowledge
+  - Interpretation
 
-## FASE 3 — Positioning & Sellability (LOCKED)
-- Landing page
-- Pricing
+## Phase 4 — Retrieval Evolution (FUTURE)
+- Multi-section retrieval within same document
+- Better citation grounding
+- (Multi-source comparison explicitly postponed)
 
-## FASE 4 — Validation (LOCKED)
-- 5–10 users
-- No new features
-
-## FASE 5+ — Future Modules (LOCKED)
-- Gene/drug cards
-- Clinical trial module
-- Platformization
+## Phase 5 — Polish & Trust
+- Subtle micro-interactions
+- Favicon + brand assets
+- Performance + accessibility pass
