@@ -2,64 +2,77 @@
 
 ## Current Phase
 - Phase: Phase 2 — MVP Technical + Minimal UI
-- Status: ✅ Working end-to-end (UI → API → OpenAI → JSON → UI)
+- Status: ✅ Working end-to-end (UI → API → LLM → JSON → UI)
 
 ---
 
 ## What’s Implemented (DONE)
+
 ### Runtime
-- Next.js App Router project (no `src/` folder)
+- Next.js App Router project (NO `src/` folder)
 - Dev server runs (`npm run dev`)
+- Webpack mode in dev (not Turbopack)
 
 ### API
 - Endpoint: `POST /api/analyze`
 - File: `app/api/analyze/route.ts`
-- Provider: OpenAI (model: `gpt-4o-mini`)
-- Strict JSON parsing (fails if invalid JSON)
+- Multi-provider routing (OpenAI / Anthropic)
+- Intelligent router (input length, structure, domain, mode)
+- Fallback + circuit breaker
+- Strict JSON parsing + normalization
+- Guardrails per mode
+
+### Additional API
+- Endpoint: `POST /api/analyze_pdf`
+- Node runtime (`export const runtime = "nodejs"`)
+- PDF upload via multipart/form-data
+- Text extraction pipeline (currently under stabilization)
 
 ### UI
-- Single-page minimal chat UI: `app/page.tsx`
-- User can paste text, choose mode, click Analyze
-- Renders assistant output as structured sections
-- Works with all three modes
+- Single-page chat UI: `app/page.tsx`
+- Modes selector (Snapshot → Academic → Deep Dive, order locked)
+- History sidebar (ChatGPT-like)
+- Component extraction + UX polish (collapsible sections, copy buttons, loading state)
+- Length / token limits enforced
 
-### Environment
-- `.env.local` contains:
-  - `OPENAI_API_KEY=...`
-- Confirmed `/api/analyze` exists (GET returns 405)
+### Persistence
+- Supabase connected (server-side, service role)
+- Tables:
+  - `analyses`
+  - `analysis_events`
+- Analyses persisted with:
+  - input_text
+  - output_json
+  - mode
+  - provider_used
+  - fallback_used
+  - latency_ms
+  - violations_count
+
+### Metrics & Analytics
+- `analysis_created` event logged after successful insert
+- Infrastructure ready for:
+  - views
+  - copy
+  - toggle events
 
 ---
 
 ## Current Behavior (LOCKED)
 - Modes order: Snapshot → Academic → Deep Dive
-- Always include `paper_type_note` in every mode output
-- `limits` = scientific limitations/open challenges of the paper/field (NOT AI limitations)
-- Quantitative data rules:
+- Every output includes `paper_type_note`
+- `limits` = scientific limitations / open challenges (NEVER AI limits)
+- Quantitative rules:
   - Snapshot: NO numbers anywhere
   - Academic & Deep Dive:
     - NO numbers in `summary`
-    - Numbers allowed only in `why_it_matters` + `key_concepts` (explained, proportional to mode)
-- Deep Dive audience includes PhD / researchers / clinicians
-- Academic audience includes early-year / master students
+    - Numbers allowed ONLY in `why_it_matters` and `key_concepts`
+- Deep Dive target: PhD / researchers / clinicians
+- Academic target: early-year / master students
 
 ---
 
-## Known Setup Notes (Windows)
-- PowerShell can block npm scripts (ExecutionPolicy). Fixed by allowing current user scripts.
-- `curl` in PowerShell is alias; use `Invoke-RestMethod` for POST tests.
-- Ensure `.env.local` is not `.env.local.txt` (enable file extensions).
-
----
-
-## Next Concrete Steps (choose sequence)
-1) Add “Analyses history” (ChatGPT-like sidebar list) — first in-memory, then DB
-2) Add multi-provider routing (OpenAI / Anthropic etc.) with per-mode choice + fallback
-3) Add persistence (Supabase): store inputs + outputs + timestamps + mode + provider used
-4) UX polish: collapsible sections, copy buttons, loading skeleton, token/length limits
-
----
-
-## Restart Protocol (critical)
-When switching chats:
-1) Make sure these docs are up to date.
-2) In a new ChatGPT conversation, paste the “START PROMPT” from `docs/START_PROMPT.md` (or from this message).
+## Known Environment Notes (Windows)
+- PowerShell `curl` is alias → use `curl.exe`
+- Desktop path under OneDrive
+- Next dev running with Webpack (`next dev --webpack`)
