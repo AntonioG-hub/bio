@@ -1,48 +1,41 @@
-# Bio AI — Product & Continuity Rules
+# Bio AI — Product Rules (LOCKED)
 
 ## One-liner
-Bio AI explains biomedical papers (starting with reviews + compatible research articles) in structured outputs, with three depth modes.
+Bio AI explains biomedical papers in structured, depth-controlled outputs.
 
 ---
 
 ## Target (LOCKED)
-- Snapshot: anyone (fast orientation)
-- Academic: early-year / master students
-- Deep Dive: PhD students, researchers, clinicians
-
----
-
-## Supported Content (v1)
-- ✅ Review papers
-- ✅ Original research articles (interpreted as a paper explanation, not clinical guidance)
-- ❌ Clinical-trial-specific module (future)
-Note: We always declare the paper type.
+- Snapshot → anyone
+- Academic → early-year / master students
+- Deep Dive → PhD students, researchers, clinicians
 
 ---
 
 ## Modes (LOCKED ORDER)
-1) Snapshot
-2) Academic
-3) Deep Dive
+1. Snapshot
+2. Academic
+3. Deep Dive
 
 ---
 
 ## Output Structure (LOCKED)
-### Snapshot JSON keys
+
+### Snapshot
 - paper_type_note
 - summary
 - why_it_matters
 - key_concepts
 - limits
 
-### Academic JSON keys
+### Academic
 - paper_type_note
 - summary
 - why_it_matters
 - key_concepts
 - limits
 
-### Deep Dive JSON keys
+### Deep Dive
 - paper_type_note
 - summary
 - why_it_matters
@@ -54,41 +47,39 @@ Note: We always declare the paper type.
 ---
 
 ## Article Type Declaration (LOCKED)
-- Every mode MUST include:
-  - `paper_type_note` (one sentence)
-- Types:
+- Every output MUST include `paper_type_note`
+- Allowed values:
   - Review
   - Original research article
-  - Clinical study (if encountered: still declare, but no clinical guidance)
+  - Clinical study (declared, no guidance)
 
 ---
 
 ## Limits Definition (LOCKED)
-- `limits` = limitations of the paper / limitations of current scientific knowledge / open challenges.
-- Never mention AI limitations.
+- Limits = paper limitations / scientific unknowns / open challenges
+- NEVER mention AI or model limitations
 
 ---
 
 ## Quantitative Data Rules (LOCKED)
-- Snapshot: NO quantitative data anywhere.
+- Snapshot: NO numbers anywhere
 - Academic & Deep Dive:
-  - Summary: NO quantitative data
-  - Quantitative data allowed ONLY in:
+  - Summary: NO numbers
+  - Numbers allowed ONLY in:
     - why_it_matters
     - key_concepts
-  - Must be explained (what it means), proportional to audience depth.
+  - Numbers must be explained and proportional to audience
 
 ---
 
-## References Policy (v1)
-- No external bibliographic citations (DOI/PubMed).
-- Use only internal phrasing (e.g., “the authors report…”, “the study shows…”).
+## References Policy
+- No external citations (DOI, PubMed)
+- Use narrative references only (“the authors report…”)
 
 ---
 
-## What Must NOT Change
-- Mode names + order
-- Section names/structure
-- Meaning of limits
-- Rule: `paper_type_note` always present
-- Quantitative data placement rules
+## What Must NEVER Change
+- Mode names and order
+- Section names
+- Meaning of `limits`
+- Presence of `paper_type_note`
