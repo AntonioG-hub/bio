@@ -1,65 +1,37 @@
-# Bio AI — Master Roadmap
-
-Status legend:
-- DONE
-- IN PROGRESS
-- NEXT
-- LOCKED (do not start)
-
----
+# Bio AI — Roadmap
 
 ## FASE 0 — Foundations (DONE)
-- Target + value definition
-- Scope for v1 clarified
-- Output sections defined
-
----
+- Target and scope defined
+- Output schema locked
 
 ## FASE 1 — Core Output Quality (DONE)
-- Modes: Snapshot / Academic / Deep Dive
-- Audiences defined per mode
-- `paper_type_note` added to all modes
-- `limits` meaning locked (scientific limitations only)
-- Quantitative rules locked:
-  - Snapshot: no numbers
-  - Academic/Deep Dive: no numbers in summary; numbers only in why/key_concepts
+- Modes and audiences
+- Quantitative rules locked
+- `paper_type_note` mandatory
+- `limits` meaning locked
 
----
+## FASE 2 — MVP Technical (DONE)
+- `/api/analyze` working
+- UI working
+- History + persistence
+- Multi-provider routing
+- Analytics infrastructure
 
-## FASE 2 — MVP Technical (IN PROGRESS → almost DONE)
-DONE:
-- Next.js App Router running
-- `/api/analyze` works end-to-end with OpenAI
-- Minimal chat UI works
-
-NEXT:
-- Add analyses history (in-memory → DB)
-- Add multi-provider option layer (OpenAI primary, Anthropic fallback)
-- Add persistence (Supabase)
-
----
+## FASE 2.5 — PDF Ingestion (IN PROGRESS)
+- Upload PDF
+- Extract text
+- Feed same analysis pipeline
+- Keep output schema locked
 
 ## FASE 3 — Positioning & Sellability (LOCKED)
-- Landing page + pricing draft
-- Copywriting + value proposition testing
+- Landing page
+- Pricing
 
----
+## FASE 4 — Validation (LOCKED)
+- 5–10 users
+- No new features
 
-## FASE 4 — Light Validation (LOCKED)
-- 5–10 target users
-- Qualitative feedback (no new features; only prompt/output tuning)
-
----
-
-## FASE 5 — Module C (LOCKED)
-- Gene/drug inline cards (side panel)
-
----
-
-## FASE 6 — Module B (LOCKED)
-- Clinical trial explanation module
-
----
-
-## FASE 7 — Platform (LOCKED)
-- Modular biomedical interpretation platform
+## FASE 5+ — Future Modules (LOCKED)
+- Gene/drug cards
+- Clinical trial module
+- Platformization
